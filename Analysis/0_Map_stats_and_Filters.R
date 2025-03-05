@@ -1,7 +1,7 @@
 # Packages
 library(readr)
 library(sf)
-library(RColorBrewer)
+library(viridis)
 
 # Option
 options(scipen = 10000)
@@ -75,7 +75,7 @@ pdf("FigS1.pdf", width = 8.84, height = 9.68, useDingbats = FALSE)
   q <- c(0, 500, 1000, 2000, 3000, 200000)
   qp <- cut(nbp, q, labels = FALSE)
   
-  colo <- rev(brewer.pal(length(q) - 1, "Spectral"))
+  colo <- viridis(length(q) - 1, option = "D")
   
   par(mar = c(0, 0, 0, 0))
   plot(st_geometry(shp), col = colo[qp], border = NA)
@@ -96,7 +96,7 @@ pdf("FigS1.pdf", width = 8.84, height = 9.68, useDingbats = FALSE)
   q <- c(0, 100, 110, 120, 130)
   qs <- cut(nbs, q, labels = FALSE)
   
-  colo <- rev(brewer.pal(length(q) - 1, "Spectral"))
+  colo <- viridis(length(q) - 1, option = "D")
   
   par(mar = c(0, 0, 0, 0))
   plot(st_geometry(shp), col = colo[qs], border = NA)
@@ -117,7 +117,7 @@ pdf("FigS1.pdf", width = 8.84, height = 9.68, useDingbats = FALSE)
   q <- seq(0, 1000, 200)
   qp0 <- cut(nbp0, q, labels = FALSE)
   
-  colo <- rev(brewer.pal(length(q) - 1, "Spectral"))
+  colo <- viridis(length(q) - 1, option = "D")
   
   par(mar = c(0, 0, 0, 0))
   plot(st_geometry(shp), col = colo[qp0], border = NA)
@@ -138,7 +138,7 @@ pdf("FigS1.pdf", width = 8.84, height = 9.68, useDingbats = FALSE)
   q <- c(0, 20, 40, 60, 80)
   qs0 <- cut(nbs0, q, labels = FALSE)
   
-  colo <- rev(brewer.pal(length(q) - 1, "Spectral"))
+  colo <- viridis(length(q) - 1, option = "D")
   
   par(mar = c(0, 0, 0, 0))
   plot(st_geometry(shp), col = colo[qs0], border = NA)

@@ -280,5 +280,9 @@ tex <- paste0(c("-", 1:5), " & ", tabcomp, " (",
               round(100 * tabcoms / sum(tabcoms), digits = 2), "\\%)", 
               " & ", tabcomsp, " (", 
               round(100 * tabcomsp / sum(tabcomsp), digits = 2), "\\%)", "\\")
+
 print(data.frame(tex), row.names = FALSE)
+
+
+
 

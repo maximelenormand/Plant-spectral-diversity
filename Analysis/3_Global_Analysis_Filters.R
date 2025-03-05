@@ -58,27 +58,31 @@ BCbals <- BCbals[filters$Filter0[idfiltersbeta1] == 1 &
 
 gc()
 
-COR <- matrix(0, 4, 3)
+COR <- matrix(0, 4, 4)
 
 temp <- cor.test(Rp, Rs, method = "pearson")
 COR[1, 1] <- temp$estimate
 COR[1, 2] <- temp$conf.int[1]
 COR[1, 3] <- temp$conf.int[2]
+COR[1, 4] <- temp$p.value
 
 temp <- cor.test(Hp, Hs, method = "pearson")
 COR[2, 1] <- temp$estimate
 COR[2, 2] <- temp$conf.int[1]
 COR[2, 3] <- temp$conf.int[2]
+COR[2, 4] <- temp$p.value
 
 temp <- cor.test(SIMp, SIMs, method = "pearson")
 COR[3, 1] <- temp$estimate
 COR[3, 2] <- temp$conf.int[1]
 COR[3, 3] <- temp$conf.int[2]
+COR[3, 4] <- temp$p.value
 
 temp <- cor.test(BCbalp, BCbals, method = "pearson")
 COR[4, 1] <- temp$estimate
 COR[4, 2] <- temp$conf.int[1]
 COR[4, 3] <- temp$conf.int[2]
+COR[4, 4] <- temp$p.value
 
 COR0 <- COR
 
@@ -109,27 +113,31 @@ BCbals <- BCbals[filters$Filter1[idfiltersbeta1] == 1 &
 
 gc()
 
-COR <- matrix(0, 4, 3)
+COR <- matrix(0, 4, 4)
 
 temp <- cor.test(Rp, Rs, method = "pearson")
 COR[1, 1] <- temp$estimate
 COR[1, 2] <- temp$conf.int[1]
 COR[1, 3] <- temp$conf.int[2]
+COR[1, 4] <- temp$p.value
 
 temp <- cor.test(Hp, Hs, method = "pearson")
 COR[2, 1] <- temp$estimate
 COR[2, 2] <- temp$conf.int[1]
 COR[2, 3] <- temp$conf.int[2]
+COR[2, 4] <- temp$p.value
 
 temp <- cor.test(SIMp, SIMs, method = "pearson")
 COR[3, 1] <- temp$estimate
 COR[3, 2] <- temp$conf.int[1]
 COR[3, 3] <- temp$conf.int[2]
+COR[3, 4] <- temp$p.value
 
 temp <- cor.test(BCbalp, BCbals, method = "pearson")
 COR[4, 1] <- temp$estimate
 COR[4, 2] <- temp$conf.int[1]
 COR[4, 3] <- temp$conf.int[2]
+COR[4, 4] <- temp$p.value
 
 COR1 <- COR
 
@@ -160,43 +168,54 @@ BCbals <- BCbals[filters$Filter2[idfiltersbeta1] == 1 &
 
 gc()
 
-COR <- matrix(0, 4, 3)
+COR <- matrix(0, 4, 4)
 
 temp <- cor.test(Rp, Rs, method = "pearson")
 COR[1, 1] <- temp$estimate
 COR[1, 2] <- temp$conf.int[1]
 COR[1, 3] <- temp$conf.int[2]
+COR[1, 4] <- temp$p.value
 
 temp <- cor.test(Hp, Hs, method = "pearson")
 COR[2, 1] <- temp$estimate
 COR[2, 2] <- temp$conf.int[1]
 COR[2, 3] <- temp$conf.int[2]
+COR[2, 4] <- temp$p.value
 
 temp <- cor.test(SIMp, SIMs, method = "pearson")
 COR[3, 1] <- temp$estimate
 COR[3, 2] <- temp$conf.int[1]
 COR[3, 3] <- temp$conf.int[2]
+COR[3, 4] <- temp$p.value
 
 temp <- cor.test(BCbalp, BCbals, method = "pearson")
 COR[4, 1] <- temp$estimate
 COR[4, 2] <- temp$conf.int[1]
 COR[4, 3] <- temp$conf.int[2]
+COR[4, 4] <- temp$p.value
 
 COR2 <- COR
 
 gc()
 
 # Table 1
-tex <- paste0(
-  round(COR0[, 1], digits = 3), " [", 
-  round(COR0[, 2], digits = 3), ",", 
-  round(COR0[, 3], digits = 3), "]",
-  " & ",
-  round(COR2[, 1], digits = 3), " [", 
-  round(COR2[, 2], digits = 3), ",", 
-  round(COR2[, 3], digits = 3), "]",
-  "\\"
-)
+temp=COR0[,4]
+COR0[,4][temp<0.001]="(***)"
+COR0[,4][temp>=0.001]="(ns)"
+temp=COR2[,4]
+COR2[,4][temp<0.001]="(***)"
+COR2[,4][temp>=0.001]="(ns)"
+
+tex=paste0(round(as.numeric(COR0[,1]),digits=3), 
+           " [", round(as.numeric(COR0[,2]),digits=3),",", 
+           round(as.numeric(COR0[,3]),digits=3),"] ",
+           COR0[,4],
+           " & ", 
+           round(as.numeric(COR2[,1]),digits=3), 
+           " [", round(as.numeric(COR2[,2]),digits=3),",", 
+           round(as.numeric(COR2[,3]),digits=3),"] ", 
+           COR2[,4],
+           "\\")
 print(data.frame(tex), row.names = FALSE)
 
 

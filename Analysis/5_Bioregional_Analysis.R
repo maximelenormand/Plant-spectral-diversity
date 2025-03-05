@@ -217,16 +217,22 @@ pdf("Fig5.pdf", width = 16.177083, height = 4.993949, useDingbats = FALSE)
   cor <- NULL
   cormin <- NULL
   cormax <- NULL
+  corpval <- NULL
   for (k in 1:nbr) {
     temp <- cor.test(Hp[[k]], Hs[[k]])
     cor <- c(cor, temp$estimate)
     cormin <- c(cormin, temp$conf.int[1])
     cormax <- c(cormax, temp$conf.int[2])
+    corpval <- c(corpval, temp$p.value)
   }
   temp <- cor.test(Hptot, Hstot)
   cor <- c(cor, temp$estimate)
   cormin <- c(cormin, temp$conf.int[1])
   cormax <- c(cormax, temp$conf.int[2])
+  corpval <- c(corpval, temp$p.value)
+  
+  cora <- cbind(c("BR1 (H)","BR2 (H)","BR3 (H)","BR4 (H)","BR5 (H)","All (H)"), 
+                cor, cormin, cormax, corpval)
   
   par(mar = c(5.5, 7.5, 2, 1))
   plot(cor, 6:1, type = "n", axes = FALSE, xlab = "", ylab = "", 
@@ -252,16 +258,27 @@ pdf("Fig5.pdf", width = 16.177083, height = 4.993949, useDingbats = FALSE)
   cor <- NULL
   cormin <- NULL
   cormax <- NULL
+  corpval <- NULL
   for (k in 1:nbr) {
     temp <- cor.test(BCp[[k]], BCs[[k]])
     cor <- c(cor, temp$estimate)
     cormin <- c(cormin, temp$conf.int[1])
     cormax <- c(cormax, temp$conf.int[2])
+    corpval <- c(corpval, temp$p.value)
   }
   temp <- cor.test(BCptot, BCstot)
   cor <- c(cor, temp$estimate)
   cormin <- c(cormin, temp$conf.int[1])
   cormax <- c(cormax, temp$conf.int[2])
+  corpval <- c(corpval, temp$p.value)
+  
+  corb <- cbind(c("BR1 ($\beta_{BC-bal}$)", 
+                  "BR2 ($\beta_{BC-bal}$)", 
+                  "BR3 ($\beta_{BC-bal}$)",
+                  "BR4 ($\beta_{BC-bal}$)",
+                  "BR5 ($\beta_{BC-bal}$)", 
+                  "All ($\beta_{BC-bal}$)"), 
+                cor, cormin, cormax, corpval)
   
   par(mar = c(5.5, 7.5, 2, 1))
   plot(cor, 6:1, type = "n", axes = FALSE, xlab = "", ylab = "", 
@@ -294,12 +311,17 @@ pdf("Fig5.pdf", width = 16.177083, height = 4.993949, useDingbats = FALSE)
   cor <- NULL
   cormin <- NULL
   cormax <- NULL
+  corpval <- NULL
   for (k in 1:nint) {
     temp <- cor.test(BCintp[[k]], BCints[[k]])
     cor <- c(cor, temp$estimate)
     cormin <- c(cormin, temp$conf.int[1])
     cormax <- c(cormax, temp$conf.int[2])
+    corpval <- c(corpval, temp$p.value)
   }
+  
+  corc=cbind(paste0(lab, " ($\beta_{BC-bal}$)"), 
+             cor, cormin, cormax, corpval)
   
   par(mar = c(5.5, 14, 2, 1))
   plot(cor, 10:1, type = "n", axes = FALSE, xlab = "", ylab = "", 
@@ -323,3 +345,19 @@ pdf("Fig5.pdf", width = 16.177083, height = 4.993949, useDingbats = FALSE)
          xpd = TRUE, text.font = 1)
 
 dev.off()
+
+# Table S3
+corabc=rbind(cora,corb,corc)
+temp=corabc[,5]
+corabc[,5][temp<0.001]="(***)"
+corabc[,5][temp>=0.001]="(ns)"
+
+tex=paste0(corabc[,1], " & ", 
+           round(as.numeric(corabc[,2]),digits=3), " [", 
+           round(as.numeric(corabc[,3]),digits=3),",", 
+           round(as.numeric(corabc[,4]),digits=3),"] ", 
+           corabc[,5], "\\")
+
+print(data.frame(tex), row.names = FALSE)
+
+

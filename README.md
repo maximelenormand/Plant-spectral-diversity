@@ -4,7 +4,7 @@
 
 This repository contains all the material needed to process the data, perform 
 the analysis and produce the figures that can be found in 
-[[1]](https://arxiv.org/abs/2404.18485). This study compares different source of 
+[ [1]](https://arxiv.org/abs/2404.18485). This study compares different source of 
 information (in situ and remote sensing)
 to measure alpha-diversity and beta-diversity.
 
@@ -61,23 +61,18 @@ metrics stored in the **Metrics** subfolder (created at this step).
 the **Bioregions** subfolder) and to produce the Figure S6, Figure 3 and Table
 S1.
 
-***5_Bioregional_Analysis.R*** is used to produce the Figure 4, Figure 5 and 
-Table S2.
+***5_Bioregional_Analysis.R*** is used to produce the Figure 4, Figure 5, 
+Table S2 and Table S3.
 
-## References
+## Reference and citation
 
-[1] Lenormand M, Féret JB, Papuga G, Alleaume S & Luque S (2024) [Coupling in situ and remote sensing data to assess α- and β-diversity over biogeographic gradients](https://arxiv.org/abs/2404.18485). 
-*arXiv preprint* arXiv:2404.18485.  
+If you use this code, please cite the following reference:
 
-## Citation
+[1] Lenormand M, Féret JB, Papuga G, Alleaume S & Luque S (2025)
+[Coupling in situ and remote sensing data to assess α- and β-diversity over biogeographic gradients.](https://arxiv.org/abs/2404.18485) 
+*Ecography* (in press).  
 
-If you use this code, please cite:
-
-[1] Lenormand M, Féret JB, Papuga G, Alleaume S & Luque S (2024) [Coupling in situ and remote sensing data to assess α- and β-diversity over biogeographic gradients](https://arxiv.org/abs/2404.18485). 
-*arXiv preprint* arXiv:2404.18485. 
-
-If you need help, find a bug, want to give us advice or feedback, please contact me!
-You can reach me at maxime.lenormand[at]inrae.fr.
+If you need help, find a bug, want to give me advice or feedback, please contact me!
 
 ## Repository mirrors
 
