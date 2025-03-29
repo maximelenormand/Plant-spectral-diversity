@@ -4,7 +4,7 @@
 
 This repository contains all the material needed to process the data, perform 
 the analysis and produce the figures that can be found in 
-[ [1]](https://arxiv.org/abs/2404.18485). This study compares different source of 
+[ [1]](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.07479). This study compares different source of 
 information (in situ and remote sensing)
 to measure alpha-diversity and beta-diversity.
 
