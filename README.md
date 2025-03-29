@@ -69,8 +69,8 @@ Table S2 and Table S3.
 If you use this code, please cite the following reference:
 
 [1] Lenormand M, Féret JB, Papuga G, Alleaume S & Luque S (2025)
-[Coupling in situ and remote sensing data to assess α- and β-diversity over biogeographic gradients.](https://arxiv.org/abs/2404.18485) 
-*Ecography* (in press).  
+[Coupling in situ and remote sensing data to assess α- and β-diversity over biogeographic gradients.]([https://arxiv.org/abs/2404.18485](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.07479)) 
+*Ecography* (early view).  
 
 If you need help, find a bug, want to give me advice or feedback, please contact me!
 
